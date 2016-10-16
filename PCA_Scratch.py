@@ -2,12 +2,12 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt 
 
-data = pd.DataFrame([
-	[2.5, 2.4], [0.5, 0.7], 
-	[2.2, 2.9], [1.9, 2.2], 
-	[3.1, 3.0], [2.3, 2.7], 
-	[2, 1.6], [1, 1.1], 
-	[1.5, 1.6], [1.1, 0.9]])
+mean = [5, 5]
+cov = [[1,0], [100,100]]
+
+data = pd.DataFrame(np.random.multivariate_normal(mean, cov, 100))
+
+plt.scatter(data[0], data[1], color='b')
 
 def subtract_mean(matrix):
 
@@ -88,10 +88,13 @@ principle_comp = get_principle_comp(eig_vals, eig_vecs, 2)
 
 feature_vector = np.dot(principle_comp.T, data.T)
 
-plt.scatter(feature_vector[0], feature_vector[1])
-plt.ylim(-2,2)
+print feature_vector.T
+
+plt.scatter(feature_vector[0], feature_vector[1], color='r', marker='x')
 
 plt.show()
+
+
 
 
 
